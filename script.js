@@ -2,6 +2,8 @@ const inputPokemon = document.querySelector("#iptPokemon");
 
 // dados do pokemon
 const dadosPokemon = document.querySelector(".dadosPokemon");
+const tipos = document.querySelector(".tipo");
+const habilidades = document.querySelector(".habilidades");
 const nomePokemon = document.querySelector(".nome");
 const spritePokemon = document.querySelector(".sprite");
 const movesPokemon = document.querySelector("#moves");
@@ -10,8 +12,10 @@ const habilidadesPokemon = document.querySelectorAll(".habilidades > p");
 
 const pokedex = document.querySelector(".pokedex-lista");
 let pokedexDiv;
+let ordenaPokemon = [];
 const btnInput = document.querySelector(".btnInput");
 const btnMais = document.querySelector(".btnMaisPokemon");
+const btnClose = document.querySelector(".btnClose");
 
 let inicioBusca = 1;
 let limiteBusca = 100;
@@ -33,6 +37,10 @@ btnMais.addEventListener("click", function () {
   iniciaPokedex();
 });
 
+btnClose.addEventListener("click", function () {
+  dadosPokemon.classList.add("escondido");
+});
+
 function iniciaPokedex() {
   for (let i = inicioBusca; i <= limiteBusca; i++) {
     const promiseResposta = fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
@@ -42,15 +50,17 @@ function iniciaPokedex() {
       promiseBody.then(function (pokemon) {
         const divPokemon = document.createElement("div");
         divPokemon.classList.add("pokedex-div");
+
         divPokemon.setAttribute("id", i);
 
         const img = document.createElement("img");
         img.src = pokemon.sprites.front_default;
 
         divPokemon.appendChild(img);
+        ordenaPokemon.push(divPokemon);
 
-        pokedex.appendChild(divPokemon);
         if (i === limiteBusca) {
+          ordenar();
           pokedexDiv = document.querySelectorAll(".pokedex-div");
           pokedexDiv.forEach((div) => {
             div.addEventListener("click", function () {
@@ -60,6 +70,13 @@ function iniciaPokedex() {
         }
       });
     });
+  }
+}
+
+function ordenar() {
+  ordenaPokemon.sort((a, b) => a.id - b.id);
+  for (let i = 0; i < ordenaPokemon.length; i++) {
+    pokedex.appendChild(ordenaPokemon[i]);
   }
 }
 
@@ -89,11 +106,17 @@ function buscaPokemon(pokemonSrc) {
       console.log("ERRO");
       nomePokemon.textContent = "Invalid Pokemon";
       spritePokemon.src = "";
+      tipoPokemon[0].classList.add("escondido");
+      tipoPokemon[1].classList.add("escondido");
+      habilidades.classList.add("escondido");
       return;
     }
 
     const promiseBody = resposta.json();
     promiseBody.then(function (pokemon) {
+      tipoPokemon[0].classList.remove("escondido");
+      tipoPokemon[1].classList.remove("escondido");
+      habilidades.classList.remove("escondido");
       nomePokemon.textContent = `#${
         pokemon.id
       }-${pokemon.name[0].toUpperCase()}${pokemon.name.substr(1)}`;

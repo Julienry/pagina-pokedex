@@ -132,6 +132,26 @@ div > * {
   font-family: "pokemon_gbregular";
 }
 
+.dadosPokemon .btnClose {
+  position: absolute;
+  top: -25px;
+  right: -25px;
+
+  height: 60px;
+  width: 60px;
+
+  border: solid 4px black;
+  border-radius: 50%;
+}
+
+.dadosPokemon .btnClose:hover {
+  filter: brightness(130%);
+}
+
+.dadosPokemon .btnClose:active {
+  filter: brightness(150%);
+}
+
 .dadosPokemon > .dadosPokemon-data-container {
   display: flex;
   flex-direction: column;
@@ -208,7 +228,7 @@ button {
   all: unset;
   padding: 10px 20px;
   font-family: Roboto;
-  background-color: #ff3838;
+  background-color: rgb(255, 56, 56);
   border: solid 2px black;
   border-radius: 5px;
 }
