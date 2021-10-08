@@ -7,34 +7,45 @@
       href="https://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,regular,italic,500,500italic,700,700italic,900,900italic"
       rel="stylesheet"
     />
-    <script src="script.js" defer></script>
-    <link rel="stylesheet" href="style.css" />
+    <script src="./script.js" defer></script>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/layout.css" />
+    <link rel="stylesheet" href="./css/tipos.css" />
     <title>Pokédex</title>
   </head>
   <body>
-    <div class="formulario">
+    <div class="buscaPokemon flex-column justify-center align-center">
       <h1>Pokédex</h1>
-      <div>
-        <input id="iptPokemon" type="text" />
+      <div class="flex-row justify-between align-center">
+        <input id="buscaPokemon-ipt" type="text" />
         <button type="submit" class="btnInput">Search</button>
       </div>
     </div>
 
-    <div class="dadosPokemon escondido">
-      <div class="dadosPokemon-data-container">
-        <div class="dadosPokemon-data">
+    <div class="dadosPokemon justify-center align-center escondido">
+      <img class="btnBack" src="./assets/back-button.png" />
+      <div class="dadosPokemon-data flex-column align-center">
+        <div
+          class="
+            dadosPokemon-data-container
+            flex-column
+            justify-center
+            align-center
+          "
+        >
           <span class="nome"></span>
-          <img class="sprite" />
-          <div class="tipo">
+          <img class="sprite" alt="pokemon" />
+          <div class="tipos flex-row justify-between align-center">
             <span></span>
             <span></span>
           </div>
         </div>
-        <div class="dadosPokemon-moves">
+        <div class="dadosPokemon-moves flex-column align-center">
           <label for="moves">Moves</label>
           <select id="moves"></select>
         </div>
       </div>
+      <img class="btnNext" src="./assets/next-button.png" />
 
       <div class="dadosPokemon-habilidades">
         <h2>Abilities</h2>
@@ -47,7 +58,9 @@
       <img class="btnClose" src="./assets/close-button.png" alt="close" />
     </div>
 
-    <div class="pokedex-lista"></div>
+    <div
+      class="pokedex-lista flex-row justify-center align-center flex-wrap"
+    ></div>
     <button class="btnMaisPokemon">Load more</button>
   </body>
 </html>
