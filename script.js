@@ -1,5 +1,6 @@
 const inputPokemon = document.querySelector("#buscaPokemon-ipt");
 const pokedex = document.querySelector(".pokedex-lista");
+const modal = document.querySelector(".modal");
 
 // dados do pokemon
 const dadosPokemon = document.querySelector(".dadosPokemon");
@@ -51,6 +52,7 @@ btnBack.addEventListener("click", function () {
 btnClose.addEventListener("click", function () {
   dadosPokemon.classList.remove("flex-row");
   dadosPokemon.classList.add("escondido");
+  modal.classList.add("escondido");
 });
 
 function iniciaPokedex() {
@@ -108,6 +110,7 @@ function buscaPokemon(pokemonSrc) {
   removeMoves();
   dadosPokemon.classList.remove("escondido");
   dadosPokemon.classList.add("flex-row");
+  modal.classList.remove("escondido");
 
   const promiseResposta = fetch(
     `https://pokeapi.co/api/v2/pokemon/${pokemonSrc}`
